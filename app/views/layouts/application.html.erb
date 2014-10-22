@@ -1,33 +1,90 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Fzone</title>
+  <title>PetMe</title>
   <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
   <%= csrf_meta_tags %>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+  
 </head>
-<body>
-  <header>
-    <% if user_signed_in? %>
-      <%= link_to "Salir", destroy_user_session_path, method: :delete %>
-      <%= image_tag Gravatar.new(current_user.email).image_url %>
-    <% end %>
-    <h1>TE GUSTA O NO</h1>
-  </header>
 
-  <p>Elige aquellos amig@s que te gustan de forma anonima, te avisaremos si ambos coinciden, el resto va por tu cuenta.</p>
+<body class="background_body">
+ <nav class="navbar navbar-default" role="navigation">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="#">PetMe</a>
+     </div>
+    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+      <ul class="nav navbar-nav navbar-right">
+        <li><% if user_signed_in? %>
+          <%= link_to "Salir", destroy_user_session_path, method: :delete %>
+        </li>
+        <li>
+          <%= image_tag Gravatar.new(current_user.email).image_url %>
+          <% end %>
+        </li>
+      </ul>
+    </div><!--cierra navbar-collapse-1 -->
+  </div><!--cierra el container fluid-->
+ </nav> <!--finaliza el nav-->
+ 
+ <div class="container-fluid">
+  <div class="row" >
+    <div class="col-md-2"></div>
+    <div class="col-md-8" >
+       <h1 class="col_texto_out_side_thumbnail">Te gusta? ...</h1>
+       <p class="col_texto_out_side_thumbnail">Elige aquellas mascotas que te gustan para que conozcan a tu mascota, te avisaremos si ambos coinciden, el resto va por tu cuenta.</p>
+    </div>
+    <div class="col-md-2"></div>
+  </div>  <!--finaliza el row uno-->
+</div><!--finaliza el container-fluid 1-->
 
-  <div class="content">
-    <% flash.each do |name, err|%>
-      <%= content_tag :div, err, class: name %>
-    <% end %>
+<!-- alert o notice -->
 
-    <%= yield %>
-  </div>
+<% flash.each do |name, msg|%>
+  <% if name == 'alert' %>
+    <% estilo = 'alert-warning' %>
+  <% else %>
+    <% estilo = 'alert-success' %>
+  <% end %>
 
-  <footer>
-    <p>Escribenos en twitter <a href="#">@tegustaono</a></p>
-  </footer>
+    <%= content_tag :div, msg, class: estilo %>
+<% end %>
 
+<div class= "container-fluid">
+  <div class="row">
+    <div class="col-md-2"></div>
+    <div class="col-md-8" id="col-alignment-row2">
+     
+        <div class="caption" id="thumbnailStyle">
+          <div class="content">
+            
+            <%= yield %>
+
+          </div>
+
+        </div>
+     
+    </div> <!--finaliza la columna-->     
+  </div>  <!--finaliza el row dos-->  
+</div><!--finaliza el container-fluid 2--> 
+
+ 
+
+  
+
+
+    <blockquote class="blockquote-reverse">
+      <p><small>síguenos en twitter</small> <a href="#">@PetMe</a>
+        </p>
+    </blockquote>
 </body>
 </html>
