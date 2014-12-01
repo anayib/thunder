@@ -14,6 +14,8 @@ gem 'sdoc', '~> 0.4.0',          group: :doc
 gem 'devise'
 gem 'gravatar-ultimate'
 
+gem 'bootstrap-sass'
+
 group :development do
   gem 'pry' #debugger
   gem 'spring'
