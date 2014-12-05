@@ -1,6 +1,7 @@
 class FriendsController < ApplicationController
   before_action :authenticate_user!
 
+
   def index
     @friend = current_user.random_friend
     # render :index (default behavior)
@@ -16,6 +17,10 @@ class FriendsController < ApplicationController
 
     if @friend.liked?(current_user)
       render :match
+
+      FriendMailer.email_friend(@friend, current_user).deliver
+      FriendMailer.email_current_user(@current_user , friend).deliver
+
     else
       redirect_to root_path
     end
