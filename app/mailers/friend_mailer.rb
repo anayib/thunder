@@ -11,7 +11,7 @@ class FriendMailer < ActionMailer::Base
     def email_current_user(current_user, friend)
       @user_who_likes = current_user
       @user_liked = friend
-      mail(to: @user_who_likes, subject: 'Le has dado te gusta a un amigo')
+      mail(to: @user_who_likes.email, subject: 'Le has dado te gusta a un amigo')
     end
 
 end

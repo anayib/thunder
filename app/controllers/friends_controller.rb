@@ -19,7 +19,7 @@ class FriendsController < ApplicationController
       render :match
 
       FriendMailer.email_friend(@friend, current_user).deliver
-      FriendMailer.email_current_user(@current_user , friend).deliver
+      FriendMailer.email_current_user(@current_user , @friend).deliver
 
     else
       redirect_to root_path
