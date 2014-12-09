@@ -19,6 +19,9 @@ group :development do
   gem 'spring'
   gem 'guard'
   gem 'guard-livereload', require: false
+  gem "letter_opener"
+  #gem para ver los correos que se envían cuando estoy local
+  #requiere una configuración local en environtment
 end
 
 # Use ActiveModel has_secure_password
